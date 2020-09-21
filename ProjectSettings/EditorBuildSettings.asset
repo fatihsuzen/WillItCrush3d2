@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_WillItCrush/Scenes/Game.unity
+    guid: 598d818cf64ab63428f668125c6419dd
   m_configObjects: {}
