@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class GameInUpgrade1 : MonoBehaviour
 {
-    Money Money = new Money();
+    public Money Money;
 
     //START PRICE TEXT VALUES IN BUTTON
     public int SpeedPrice, GravityPrice, ToothsPrice, ToothSizePrice, MarketingPrice, SpawnCubeTimePrice;
@@ -20,20 +19,21 @@ public class GameInUpgrade1 : MonoBehaviour
     public float SpeedEventValue, GravityEventValue, ToothsEventValue, ToothSizeEventValue, MarketingEventValue, SpawnCubeTimeEventValue;
     public List<GameObject> ToothObjectForSize = new List<GameObject>();
     public static int CurrentCylinder;
-    float Toothsize = 0.1f,GravityValue;
+    float Toothsize = 0.1f, GravityValue;
+
     void Start()
-    {        
+    {
         InvokeRepeating("ForBtnActiveStaticInt", 0, 0.1f);
         //SPEED EVENT
         SpeedPriceText.text = SpeedPrice + "$";
-        SpeedInfoText.text = SpeedInfoValue +"\n"+"rev/min";
+        SpeedInfoText.text = SpeedInfoValue + "\n" + "rev/min";
         //GRAVITY EVENT
-        GravityPriceText.text= GravityPrice.ToString();
+        GravityPriceText.text = GravityPrice.ToString();
         GravityValue = -500f * Time.deltaTime;
         Physics.gravity = new Vector3(0, GravityValue, 0);
         //TOOTHS EVENT
-        ToothsPriceText.text= ToothsPrice.ToString();
-        ToothSizePriceText.text= ToothSizePrice.ToString();        
+        ToothsPriceText.text = ToothsPrice.ToString();
+        ToothSizePriceText.text = ToothSizePrice.ToString();
         //TOOTHS SİZE EVENT
         ToothSizeInfoText.text = ToothSizeInfoValue + "\n" + "meters";
         //MARKETING EVENT
@@ -43,7 +43,9 @@ public class GameInUpgrade1 : MonoBehaviour
         SpawnCubeTimePriceText.text = SpawnCubeTimePrice.ToString();
         SpawnCubeTimeInfoText.text = SpawnCubeTimeInfoValue + "\n" + "sec";
 
-    }    
+
+
+    }
     public void SpeedButtonEvent()
     {
         Money.MoneyValueMinus(SpeedPrice);
@@ -55,29 +57,29 @@ public class GameInUpgrade1 : MonoBehaviour
     }
     public void GravityButtonEvent()
     {
-        Money.MoneyValueMinus(GravityPrice);
-        GravityInfoValue+=0.1f;
+        Money.ChangeMoneyValue(-GravityPrice);
+        GravityInfoValue += 0.1f;
         GravityInfoText.text = GravityInfoValue + "\n" + "m/s2";
         GravityValue -= GravityEventValue * Time.deltaTime;
         Physics.gravity = new Vector3(0, GravityValue, 0);
     }
     public void ToothButtonEvent()
     {
-        if (CurrentCylinder < CylinderRotation.sLeftCylinder.Count-1)
+        if (CurrentCylinder < CylinderRotation.sLeftCylinder.Count - 1)
         {
             Money.MoneyValueMinus(ToothsPrice);
             ToothsInfoValue += ToothsEventValue;
             ToothsInfoText.text = ToothsInfoValue + "\n" + "per roll";
-            CurrentCylinder+= (int)ToothsEventValue;
+            CurrentCylinder += (int)ToothsEventValue;
             CylinderToothActiveController(CurrentCylinder);
-        }        
+        }
     }
     public void ToothSizeButtonEvent()
     {
         Money.MoneyValueMinus(ToothSizePrice);
         Toothsize += ToothSizeEventValue;
-        
-        for (int i = 0;i<ToothObjectForSize.Count;i++)
+
+        for (int i = 0; i < ToothObjectForSize.Count; i++)
         {
             ToothObjectForSize[i].transform.localScale = new Vector3(Toothsize, 1.99f, Toothsize);
         }
@@ -88,7 +90,7 @@ public class GameInUpgrade1 : MonoBehaviour
         MarketingInfoValue += MarketingEventValue;
         MarketingInfoText.text = MarketingInfoValue + "\n" + "$/item";
         Money.PerItemValue += (int)MarketingEventValue;
-    } 
+    }
     public void SpawnCubeTimeButtonEvent()
     {
         if (0.4f < SpawnerCube.SpawnCubetime)
@@ -98,14 +100,14 @@ public class GameInUpgrade1 : MonoBehaviour
             SpawnCubeTimeInfoText.text = SpawnCubeTimeInfoValue + "\n" + "sec";
             SpawnerCube.SpawnCubetime -= SpawnCubeTimeEventValue;
         }
-      
+
     }
     public void CylinderToothActiveController(int CurrentCylinder)
     {
-      CylinderRotation.sLeftCylinder[CurrentCylinder].SetActive(true);
-      CylinderRotation.sRightCylinder[CurrentCylinder].SetActive(true);
-      CylinderRotation.sLeftCylinder[CurrentCylinder - 1].SetActive(false);
-      CylinderRotation.sRightCylinder[CurrentCylinder - 1].SetActive(false);        
+        CylinderRotation.sLeftCylinder[CurrentCylinder].SetActive(true);
+        CylinderRotation.sRightCylinder[CurrentCylinder].SetActive(true);
+        CylinderRotation.sLeftCylinder[CurrentCylinder - 1].SetActive(false);
+        CylinderRotation.sRightCylinder[CurrentCylinder - 1].SetActive(false);
     }
     public void ForBtnActiveStaticInt()
     {

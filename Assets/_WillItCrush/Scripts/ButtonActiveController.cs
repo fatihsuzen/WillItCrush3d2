@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ButtonActiveController : MonoBehaviour
 {
     public Button ButtonSpeed, ButtonGravity, ButtonTooths, ButtonToothSize, ButtonMarketing, ButtonSpawnCubeTime;
+
     void Start()
     {
         ControllerFunc();
@@ -31,10 +32,9 @@ public class ButtonActiveController : MonoBehaviour
         Controller(GameInUpgrade1.sMarketingPrice, ButtonMarketing);
         Controller(GameInUpgrade1.sSpawnCubeTime, ButtonSpawnCubeTime);
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         ControllerFunc();
     }
-    
-
 }
