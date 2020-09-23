@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    public static int money = 0;
+    public static float money=10000;
     public static int PerItemValue = 1;
-
-
-    public void MoneyValueMinus(int minusValue)
+    public void ChangeMoneyValue(float Value)
     {
-        money -= minusValue;
-    }
-
-    public void ChangeMoneyValue(int minusValue)
-    {
-        money += minusValue;
+        money += Value;
     }
 }

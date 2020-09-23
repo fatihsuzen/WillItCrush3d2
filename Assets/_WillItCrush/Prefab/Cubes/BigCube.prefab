@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallerObject: {fileID: 4363949664868126643, guid: 8ce45b293eff15b4d9a1487463944744,
     type: 3}
-  touchCount: 4
+  touchCount: 0
 --- !u!54 &4169940468582602142
 Rigidbody:
   m_ObjectHideFlags: 0

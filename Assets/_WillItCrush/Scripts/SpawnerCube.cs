@@ -13,19 +13,9 @@ public class SpawnerCube : MonoBehaviour
     {
         StartCoroutine(Spawn());
     }
-
-    void Update()
-    {
-        if (Time.time > nextSpawn)
-        {
-            Instantiate(cube[Random.Range(0, cube.Count)], new Vector3(Random.Range(minPosY, maxPosY), 10f, 5f), Quaternion.identity);
-            nextSpawn = Time.time + SpawnCubetime;
-        }
-    }
-
     IEnumerator Spawn()
     {
-        yield return new WaitForSeconds(nextSpawn);
+        yield return new WaitForSeconds(SpawnCubetime);
 
         Instantiate(cube[Random.Range(0, cube.Count)], new Vector3(Random.Range(minPosY, maxPosY), 10f, 5f), Quaternion.identity);
         nextSpawn = Time.time + SpawnCubetime;

@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonActiveController : MonoBehaviour
 {
-    public Button ButtonSpeed, ButtonGravity, ButtonTooths, ButtonToothSize, ButtonMarketing, ButtonSpawnCubeTime;
-
+    public List<Button> buttonList = new List<Button>();
     void Start()
     {
         ControllerFunc();
@@ -25,12 +24,10 @@ public class ButtonActiveController : MonoBehaviour
     }
     public void ControllerFunc()
     {
-        Controller(GameInUpgrade1.sSpeedPrice, ButtonSpeed);
-        Controller(GameInUpgrade1.sGravityPrice, ButtonGravity);
-        Controller(GameInUpgrade1.sToothsPrice, ButtonTooths);
-        Controller(GameInUpgrade1.sToothSizePrice, ButtonToothSize);
-        Controller(GameInUpgrade1.sMarketingPrice, ButtonMarketing);
-        Controller(GameInUpgrade1.sSpawnCubeTime, ButtonSpawnCubeTime);
+        for (int i = 0; i < buttonList.Count; i++)
+        {
+            Controller(GameInUpgrade1.StaticIntArray[i], buttonList[i]);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
