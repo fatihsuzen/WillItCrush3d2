@@ -32,8 +32,8 @@ public class GameInUpgrade1 : MonoBehaviour
     {        
         SpeedInfoValue += SpeedEventValue;
         buttonTextFunc(SpeedPrice, SpeedInfoValue, SpeedInfoText, "rev/min");
-        SpeedPriceText.text = SpeedPrice + " $";
         SpeedPrice += 15;
+        SpeedPriceText.text = SpeedPrice + " $";        
         CyclinderTurn.cylinderRotSpeed += (int)6f;
 
     }
