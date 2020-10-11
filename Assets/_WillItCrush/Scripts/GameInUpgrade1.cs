@@ -80,7 +80,6 @@ public class GameInUpgrade1 : MonoBehaviour
             SpawnerCube.SpawnCubetime -= SpawnCubeTimeEventValue;
         }
 
-
     }
     public void CylinderToothActiveController(int CurrentCylinder)
     {
